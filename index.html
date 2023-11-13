@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #paintContainer {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex: 1;
+    }
+
+    #toolbar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 10px;
+      background-color: #f0f0f0;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    #canvasContainer {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas {
+      border: 1px solid #000;
+      cursor: crosshair;
+      background-color: #fff;
+    }
+
+    .controls {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    #clearCanvas, #saveDrawing {
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+  </style>
+  <title>Paint-by Rohan</title>
+</head>
+<body>
+  <div id="paintContainer">
+    <div id="toolbar">
+      <div class="controls">
+        <label for="colorPicker">Color:</label>
+        <input type="color" id="colorPicker" value="#000000">
+
+        <label for="lineWidth">Line Width:</label>
+        <input type="range" id="lineWidth" min="1" max="20" value="5">
+
+        <label for="toolSelector">Tool:</label>
+        <select id="toolSelector">
+          <option value="pen">Pen</option>
+          <option value="eraser">Eraser</option>
+          <option value="rectangle">Rectangle</option>
+          <option value="circle">Circle</option>
+          <option value="line">Line</option>
+          <option value="path">Path</option>
+          <option value="net">Net</option>
+        </select>
+
+        <button id="clearCanvas">Clear Canvas</button>
+        <button id="saveDrawing">Save Drawing</button>
+      </div>
+    </div>
+    <div id="canvasContainer">
+      <canvas id="canvas"></canvas>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

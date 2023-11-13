@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <style>
+    body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .controls {
+    margin-bottom: 10px;
+  }
+  
+  canvas {
+    border: 1px solid #000;
+    cursor: crosshair;
+  }
+  
+  </style>
+  <title>Advanced Drawing App</title>
+</head>
+<body>
+  <div class="controls">
+    <label for="colorPicker">Color:</label>
+    <input type="color" id="colorPicker" value="#000000">
+
+    <label for="lineWidth">Line Width:</label>
+    <input type="range" id="lineWidth" min="1" max="20" value="5">
+
+    <label for="toolSelector">Tool:</label>
+    <select id="toolSelector">
+      <option value="pen">Pen</option>
+      <option value="eraser">Eraser</option>
+      <option value="rectangle">Rectangle</option>
+      <option value="circle">Circle</option>
+      <option value="line">line</option>
+      <option value="path">path</option>
+      <option value="net">net</option>
+      
+    </select>
+
+    <button id="clearCanvas">Clear Canvas</button>
+    <button id="saveDrawing">Save Drawing</button>
+  </div>
+
+  <canvas id="canvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>
