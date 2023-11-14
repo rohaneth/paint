@@ -1,5 +1,6 @@
 alert(`if you find any problem relode page after each selection of tool`);
 
+
 document.addEventListener('DOMContentLoaded', () => {
 
     const canvas = document.getElementById('canvas');
@@ -20,6 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
     let endPoint = {x:0,y:0};
     let vertex = {x:0,y:0};
     let alerts = {c:0,n:0,p:0};
+    let Triangle = {click:0};
+    let t = {x1:0,
+        y1:0,
+        x2:0,
+        y2:0,
+        x3:0,
+        y3:0
+      }
 
   
     canvas.width = window.innerWidth - 50;
@@ -129,18 +138,53 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         canvas.addEventListener('click', function (evt) {
           if (evt.detail === 3) {
+            
             ctx.beginPath();
             ctx.moveTo(startX,startY);
             ctx.lineTo(x,y);
             ctx.stroke();
             ctx.beginPath();
           }
-      });
-         
-                  
-              
-              
-      }
+      });       
+      }else if(toolSelector.value === 'Triangle'){
+
+        let isDrawing = false;
+        let clickCount = 0;
+        let clickLocations = [];
+        
+        canvas.addEventListener('mousedown', recordClick);
+        
+        function recordClick(e) {
+          if (clickCount < 3) {
+            const x = e.clientX - canvas.offsetLeft;
+            const y = e.clientY - canvas.offsetTop;
+            clickLocations.push({ x, y });
+            clickCount++;
+        
+            if (clickCount === 3) {
+              drawTriangle(clickLocations);
+              clickCount = 0;
+              clickLocations = [];
+            }
+          }
+        }
+        
+        function drawTriangle(locations) {
+          if(toolSelector.value !== 'Triangle'){
+            return;
+          }
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.beginPath();
+          ctx.moveTo(locations[0].x, locations[0].y);
+          ctx.lineTo(locations[1].x, locations[1].y);
+          ctx.lineTo(locations[2].x, locations[2].y);
+          ctx.closePath();
+          ctx.stroke();
+        }
+        }
+        
+      
+      
     }
   
     function clearCanvas() {
