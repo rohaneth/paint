@@ -98,13 +98,22 @@ document.addEventListener('DOMContentLoaded', () => {
            keeping fincer on cursor then lift fingure`);
            alerts.c = 1;
         }
+        if(toolSelector.value !== 'line'){
+          return;
+        }
           
                 canvas.addEventListener("mousedown",(e)=>{
+                  if(toolSelector.value !== 'line'){
+                    return;
+                  }
                     isDrawing = true;
                     startPoint.x = e.clientX - canvas.offsetLeft;
                     startPoint.y = e.clientY - canvas.offsetTop;
                 })
                 canvas.addEventListener("mouseup",(e)=>{
+                  if(toolSelector.value !== 'line'){
+                    return;
+                  }
                   if (!isDrawing) return;
                   endPoint.x = e.clientX - canvas.offsetLeft;
                   endPoint.y = e.clientY - canvas.offsetTop;
@@ -120,9 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
           click Touchpad once then dobuleclick at anywhere to extend path further`);
            alerts.p = 1;
         }
+        if(toolSelector.value !== 'path'){
+          return;
+        }
         ctx.beginPath();
         ctx.moveTo(startX,startY);
         canvas.addEventListener('dblclick', ()=>{
+          if(toolSelector.value !== 'path'){
+            return;
+          }
           ctx.lineTo(x,y);
           ctx.stroke();
           //ctx.beginPath();
@@ -136,9 +151,14 @@ document.addEventListener('DOMContentLoaded', () => {
           tripel click the tuchpad as many times you can all points will connect`);
            alerts.n = 1;
         }
+        if(toolSelector.value !== 'net'){
+          return;
+        }
         canvas.addEventListener('click', function (evt) {
           if (evt.detail === 3) {
-            
+            if(toolSelector.value !== 'net'){
+              return;
+            }
             ctx.beginPath();
             ctx.moveTo(startX,startY);
             ctx.lineTo(x,y);
@@ -155,6 +175,9 @@ document.addEventListener('DOMContentLoaded', () => {
         canvas.addEventListener('mousedown', recordClick);
         
         function recordClick(e) {
+          if(toolSelector.value !== 'Triangle'){
+            return;
+          }
           if (clickCount < 3) {
             const x = e.clientX - canvas.offsetLeft;
             const y = e.clientY - canvas.offsetTop;
